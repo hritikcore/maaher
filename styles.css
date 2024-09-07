@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+main.background-container {
+  background-image: url("image.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.user-options {
+  display: flex;
+  gap: 20px;
+}
+
+.user-options a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.user-options a:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  margin-top: 20px; /* Adjust the margin as needed */
+  text-align: center;
+}
+
+.logo img {
+  max-width: 50px; /* Adjust size as needed */
+}
+
+.content {
+  text-align: center;
+  color: black;
+  padding: 60px 20px;
+  background-color: #f9f9f9; /* Optional: Add background color to the content section */
+}
+
+.content h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.second-section {
+  height: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Adjust the padding based on your design */
+  max-width: 1200px;
+  /* Set this to the maximum width you want */
+  margin: 0 auto; /* Center the section horizontally */
+}
+
+.left-column,
+.right-column {
+  width: 48%; /* This will leave space for margins */
+}
+
+.left-column .image-placeholder {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  width: 100%;
+  height: 800px !important; /* Adjust height as needed */
+  background-color: #e0e0e0; /* Placeholder color */
+}
+
+.right-column h2 {
+  font-size: 1.8em; /* Adjust size according to design */
+  margin-bottom: 16px;
+}
+
+.right-column p {
+  font-size: 1em;
+  margin-bottom: 24px;
+}
+
+.read-more {
+  font-size: 1em;
+  color: #000; /* Adjust color as needed */
+  text-decoration: none;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.products-section {
+  height: auto;
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.products-section h2 {
+  font-size: 2em;
+  margin-bottom: 16px;
+}
+
+.products-section p {
+  font-size: 1em;
+  margin-bottom: 40px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #f5f5f5;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 300px; /* Adjust height as needed */
+  background-color: #e0e0e0; /* Placeholder color */
+  margin-bottom: 16px;
+}
+
+.product-card p {
+  font-size: 0.9em;
+  margin-bottom: 8px;
+}
+
+.price {
+  font-weight: bold;
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.site-footer {
+  background-color: #f8f8e3; /* Light beige background color */
+  color: #333; /* Text color */
+  padding: 40px 20px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.left-content {
+  margin-top: 60px;
+  flex: 1;
+  margin-right: 20px;
+}
+
+.right-content {
+  margin-top: 120px;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.site-footer h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+.site-footer p {
+  width: 450px;
+  font-size: 1em;
+  margin-bottom: 30px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer-links .explore,
+.footer-links .newsletter {
+  width: 48%;
+}
+
+.footer-links h3 {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.footer-links .newsletter form {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-links .newsletter input[type="email"] {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.footer-links .newsletter button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.social-icons i {
+  font-size: 1.2em;
+}
+
+.copyright {
+  text-align: center;
+  margin-left: 40px;
+  margin-top: 40px;
+  font-size: 0.8em;
+  color: #777;
+}
