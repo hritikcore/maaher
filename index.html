@@ -127,7 +127,8 @@
         </div>
         <div class="user-options">
           <!-- Cart SVG Icon -->
-          <a href="#" class="cart">
+          <!-- Cart SVG Icon with Cart Counter -->
+          <a href="#" class="cart" onclick="toggleCartDrawer()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -147,6 +148,7 @@
                 stroke-linecap="round"
               />
             </svg>
+            <span id="cart-counter" class="cart-counter">0</span>
           </a>
           <!-- Login SVG Icon -->
           <!-- <a href="#" class="login">
@@ -318,6 +320,14 @@
     <section class="image-section">
       <img src="image copy 5.png" alt="Full-width Image Description" />
     </section>
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="cart-drawer">
+      <button onclick="toggleCartDrawer()">Close</button>
+      <h2>Your Cart</h2>
+      <div id="cart-items-container"></div>
+      <div id="cart-total">Total: Rs. 0</div>
+      <button onclick="checkout()">Checkout</button>
+    </div>
 
     <footer class="site-footer">
       <div class="footer-content">
@@ -399,5 +409,91 @@
 
     // Optionally, check when the window is resized
     window.onresize = checkForMobile;
+  </script>
+  <script>
+    // Initialize cart from localStorage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    updateCartCounter();
+
+    // Add to Cart function (can be reused across pages)
+    function addToCart(name, price, image) {
+      const existingItem = cart.find((item) => item.name === name);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ name, price, image, quantity: 1 });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCounter();
+      alert("Added to bag!");
+    }
+
+    // Update Cart Counter
+    function updateCartCounter() {
+      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById("cart-counter").textContent = totalItems;
+    }
+
+    // Toggle Cart Drawer
+    function toggleCartDrawer() {
+      const cartDrawer = document.getElementById("cart-drawer");
+      cartDrawer.classList.toggle("show");
+      renderCartItems();
+    }
+
+    // Render Cart Items in Cart Drawer
+    function renderCartItems() {
+      const cartItemsContainer = document.getElementById(
+        "cart-items-container"
+      );
+      cartItemsContainer.innerHTML = ""; // Clear previous items
+
+      cart.forEach((item) => {
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+        cartItem.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div class="cart-item-details">
+          <h4>${item.name}</h4>
+          <p>Price: Rs. ${item.price}</p>
+        </div>
+        <div class="cart-item-quantity">
+          <button onclick="updateQuantity('${item.name}', -1)">-</button>
+          <span>${item.quantity}</span>
+          <button onclick="updateQuantity('${item.name}', 1)">+</button>
+        </div>
+      `;
+        cartItemsContainer.appendChild(cartItem);
+      });
+
+      // Update total price
+      const totalPrice = cart.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
+      document.getElementById(
+        "cart-total"
+      ).textContent = `Total: Rs. ${totalPrice}`;
+    }
+
+    // Update Quantity in Cart
+    function updateQuantity(name, change) {
+      const item = cart.find((item) => item.name === name);
+      if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+          cart = cart.filter((i) => i.name !== name); // Remove item if quantity is 0
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCartItems();
+        updateCartCounter();
+      }
+    }
+
+    // Checkout function (for further integration)
+    function checkout() {
+      alert("Proceed to checkout");
+      // Add Razorpay integration here
+    }
   </script>
 </html>
