@@ -181,6 +181,32 @@ html {
   font-weight: bold;
 }
 
+/* Instagram Section */
+.instagram-section {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #f9f9f9; /* Optional background color */
+}
+
+.instagram-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Four posts per row */
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.instagram-placeholder {
+  width: 100%;
+  height: 300px; /* Placeholder height */
+  background-color: #e0e0e0; /* Placeholder color */
+}
+
 .image-section img {
   width: 100%;
   height: auto;
