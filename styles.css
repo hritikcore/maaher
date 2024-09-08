@@ -8,57 +8,63 @@ body,
 html {
   height: 100%;
   font-family: Arial, sans-serif;
+  background: #fffef9;
 }
 
-main.background-container {
+/* Main container with background image */
+.background-container {
+  position: relative;
   background-image: url("image.png");
   background-size: cover;
   background-position: center;
   height: 100vh; /* Full viewport height */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+  width: 100%;
 }
 
+/* Header styles */
 .header {
-  width: 100%;
   position: absolute;
   top: 0;
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
-  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px; /* Semi-transparent background */
+  /* Optional blur for better readability */
 }
 
+/* Center Logo */
+.logo {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.logo svg {
+  max-width: 50px;
+}
+
+/* User Options (Cart & Login) */
 .user-options {
   display: flex;
   gap: 20px;
 }
 
 .user-options a {
-  color: white;
   text-decoration: none;
-  font-size: 18px;
+  color: #351d0d;
 }
 
-.user-options a:hover {
-  text-decoration: underline;
-}
-
-.logo {
-  margin-top: 20px; /* Adjust the margin as needed */
-  text-align: center;
-}
-
-.logo img {
-  max-width: 50px; /* Adjust size as needed */
+.user-options svg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .content {
   text-align: center;
   color: black;
   padding: 60px 20px;
-  background-color: #f9f9f9; /* Optional: Add background color to the content section */
+  /* Optional: Add background color to the content section */
 }
 
 .content h1 {
@@ -74,6 +80,7 @@ main.background-container {
 }
 
 .second-section {
+  background: #fffef9;
   height: 1200px;
   display: flex;
   justify-content: space-between;
@@ -81,7 +88,8 @@ main.background-container {
   padding: 0 20px; /* Adjust the padding based on your design */
   max-width: 1200px;
   /* Set this to the maximum width you want */
-  margin: 0 auto; /* Center the section horizontally */
+  margin: 0 auto;
+  gap: 90px; /* Center the section horizontally */
 }
 
 .left-column,
@@ -91,10 +99,16 @@ main.background-container {
 
 .left-column .image-placeholder {
   margin-top: 100px;
+
   margin-bottom: 100px;
   width: 100%;
-  height: 800px !important; /* Adjust height as needed */
+  height: auto !important; /* Adjust height as needed */
   background-color: #e0e0e0; /* Placeholder color */
+}
+
+.left-column .image-placeholder img {
+  width: 100%; /* Ensures the image takes up the full width of its container */
+  height: auto;
 }
 
 .right-column h2 {
@@ -103,8 +117,11 @@ main.background-container {
 }
 
 .right-column p {
-  font-size: 1em;
   margin-bottom: 24px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 .read-more {
