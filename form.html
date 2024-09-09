@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout Form</title>
+  </head>
+  <body>
+    <h1>Enter Your Details</h1>
+    <form id="userForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required /><br /><br />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" required /><br /><br />
+
+      <label for="pincode">Pincode:</label>
+      <input type="text" id="pincode" name="pincode" required /><br /><br />
+
+      <label for="contact">Contact Number:</label>
+      <input type="text" id="contact" name="contact" required /><br /><br />
+
+      <button type="submit">Submit & Pay</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("userForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Gather form data
+          const formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            address: document.getElementById("address").value,
+            pincode: document.getElementById("pincode").value,
+            contact: document.getElementById("contact").value,
+            totalAmount: localStorage.getItem("cartTotal"), // Assuming the total cart value is stored in localStorage
+          };
+
+          // Step 1: Submit form data to Google Sheets
+          fetch(
+            "https://script.google.com/macros/s/AKfycbxuZMLMUUvBuaDvXCTy1efmwnruKLxhIWfg1D7mymzWfSMuLCb9Ya4X2G-iR0ue3sYV/exec",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              // Store the returned unique ID (generated in Google Sheets)
+              localStorage.setItem("userUniqueId", data.id);
+
+              // Step 2: Redirect user to Razorpay payment
+              var options = {
+                key: "rzp_test_nqtmUnMF9r43qMrzp_test_nqtmUnMF9r43qM", // Razorpay API Key
+                amount: formData.totalAmount * 100, // Amount in paise
+                currency: "INR",
+                name: "Maaher",
+                description: "Purchase",
+                handler: function (response) {
+                  // After successful payment, send the payment ID to Google Sheets
+                  fetch(
+                    "https://script.google.com/macros/s/AKfycbxuZMLMUUvBuaDvXCTy1efmwnruKLxhIWfg1D7mymzWfSMuLCb9Ya4X2G-iR0ue3sYV/exec",
+                    {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        uniqueId: localStorage.getItem("userUniqueId"),
+                        paymentId: response.razorpay_payment_id, // Payment ID from Razorpay
+                      }),
+                    }
+                  ).then(() => {
+                    // Redirect to home page
+                    window.location.href = "index.html";
+                  });
+                },
+                prefill: {
+                  name: formData.name,
+                  email: formData.email,
+                  contact: formData.contact,
+                },
+                theme: {
+                  color: "#3399cc",
+                },
+              };
+              var rzp = new Razorpay(options);
+              rzp.open();
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
+    </script>
+  </body>
+</html>
