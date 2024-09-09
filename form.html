@@ -6,25 +6,27 @@
     <title>Checkout Form</title>
   </head>
   <body>
-    <h1>Enter Your Details</h1>
+    <h1>Checkout Form</h1>
     <form id="userForm">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required /><br /><br />
+      <input type="text" id="name" name="name" required /><br />
 
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required /><br /><br />
+      <input type="email" id="email" name="email" required /><br />
 
       <label for="address">Address:</label>
-      <input type="text" id="address" name="address" required /><br /><br />
+      <input type="text" id="address" name="address" required /><br />
 
       <label for="pincode">Pincode:</label>
-      <input type="text" id="pincode" name="pincode" required /><br /><br />
+      <input type="text" id="pincode" name="pincode" required /><br />
 
-      <label for="contact">Contact Number:</label>
-      <input type="text" id="contact" name="contact" required /><br /><br />
+      <label for="contact">Contact:</label>
+      <input type="text" id="contact" name="contact" required /><br />
 
-      <button type="submit">Submit & Pay</button>
+      <button type="submit">Submit</button>
     </form>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     <script>
       document
@@ -44,7 +46,7 @@
 
           // Step 1: Submit form data to Google Sheets
           fetch(
-            "https://script.google.com/macros/s/AKfycbwvMSaE5MKcpMH-hlEvW4Nf3jZq1U5ngZIVFLWWWpKjKa-8Pkhv2TvcszL4VX63oL8/exec",
+            "https://script.google.com/macros/s/AKfycbxQ0X_cLvqpP4_mnHb5Q3I2JmzrVeGchi9NLdPgTiXPAhnTZ2NTFsLf2LRXJBrA18BQ/exec", // Replace with your actual Google Apps Script URL
             {
               method: "POST",
               headers: {
@@ -60,15 +62,15 @@
 
               // Step 2: Redirect user to Razorpay payment
               var options = {
-                key: "rzp_test_nqtmUnMF9r43qM", // Razorpay API Key
-                amount: formData.totalAmount * 100, // Amount in paise
+                key: "rzp_test_nqtmUnMF9r43qM", // Replace with your Razorpay API Key
+                amount: formData.totalAmount * 100, // Amount in paise (multiplied by 100)
                 currency: "INR",
                 name: "Maaher",
                 description: "Purchase",
                 handler: function (response) {
                   // After successful payment, send the payment ID to Google Sheets
                   fetch(
-                    "https://script.google.com/macros/s/AKfycbwvMSaE5MKcpMH-hlEvW4Nf3jZq1U5ngZIVFLWWWpKjKa-8Pkhv2TvcszL4VX63oL8/exec",
+                    "https://script.google.com/macros/s/AKfycbxQ0X_cLvqpP4_mnHb5Q3I2JmzrVeGchi9NLdPgTiXPAhnTZ2NTFsLf2LRXJBrA18BQ/exec", // Replace with your actual Google Apps Script URL
                     {
                       method: "POST",
                       headers: {
@@ -80,7 +82,7 @@
                       }),
                     }
                   ).then(() => {
-                    // Redirect to home page after successful payment
+                    // Redirect to home page
                     window.location.href = "index.html";
                   });
                 },
