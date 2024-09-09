@@ -44,7 +44,7 @@
 
           // Step 1: Submit form data to Google Sheets
           fetch(
-            "https://script.google.com/macros/s/AKfycbxJoThkYBTDTHy1lL-spwKIn9Jm_tzeK7mHD70oZ7MISVa3jEuu3pPTFENd0qzU7Vn3/exec",
+            "https://script.google.com/macros/s/AKfycbwsMmggxeVMQSWXRBuPuN3VxHBj8QiZG-b3wbPYWXnl3nh8oXK7X6MAdD0GmlOKlGRg/exec",
             {
               method: "POST",
               headers: {
@@ -68,7 +68,7 @@
                 handler: function (response) {
                   // After successful payment, send the payment ID to Google Sheets
                   fetch(
-                    "https://script.google.com/macros/s/AKfycbxJoThkYBTDTHy1lL-spwKIn9Jm_tzeK7mHD70oZ7MISVa3jEuu3pPTFENd0qzU7Vn3/exec",
+                    "https://script.google.com/macros/s/AKfycbwsMmggxeVMQSWXRBuPuN3VxHBj8QiZG-b3wbPYWXnl3nh8oXK7X6MAdD0GmlOKlGRg/exec",
                     {
                       method: "POST",
                       headers: {
