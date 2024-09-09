@@ -60,7 +60,7 @@
 
               // Step 2: Redirect user to Razorpay payment
               var options = {
-                key: "rzp_test_nqtmUnMF9r43qMrzp_test_nqtmUnMF9r43qM", // Razorpay API Key
+                key: "rzp_test_nqtmUnMF9r43qM", // Razorpay API Key
                 amount: formData.totalAmount * 100, // Amount in paise
                 currency: "INR",
                 name: "Maaher",
@@ -80,7 +80,7 @@
                       }),
                     }
                   ).then(() => {
-                    // Redirect to home page
+                    // Redirect to home page after successful payment
                     window.location.href = "index.html";
                   });
                 },
