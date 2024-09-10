@@ -9,7 +9,7 @@ export default async function handler(req, res) {
       service: "Gmail", // Use Gmail, or you can set up any email provider
       auth: {
         user: "hritiksth764@gmail.com", // Your Gmail address
-        pass: "diplo@123456", // Your Gmail app password or less secure password
+        pass: "ssij lcuu fwjn vqir", // Your Gmail app password or less secure password
       },
     });
 
