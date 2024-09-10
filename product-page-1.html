@@ -233,18 +233,20 @@
 
       // Buy Now function
       function buyNow() {
-        // Redirect to form.html with cart total for immediate buy
+        // Calculate total price and store it in localStorage
         const totalPrice = cart.reduce(
           (total, item) => total + item.price * item.quantity,
           0
         );
         localStorage.setItem("totalPrice", totalPrice); // Store total price in localStorage
+
+        // Redirect to form.html for contact details
         window.location.href = "form.html";
       }
 
       // Checkout function
       function checkout() {
-        // Same logic for checkout, redirects to form.html
+        // Same logic for checkout, store total and redirect to form.html
         const totalPrice = cart.reduce(
           (total, item) => total + item.price * item.quantity,
           0

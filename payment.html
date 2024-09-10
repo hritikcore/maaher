@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment - Maaher</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  </head>
+  <body>
+    <h1>Complete Your Payment</h1>
+    <button id="pay-btn" onclick="payNow()">Pay Now</button>
+
+    <script>
+      function payNow() {
+        // Retrieve contact details from localStorage
+        const contactDetails = JSON.parse(
+          localStorage.getItem("contactDetails")
+        );
+        const totalPrice = localStorage.getItem("totalPrice");
+
+        // Configure Razorpay payment
+        var options = {
+          key: "rzp_test_tXnxpLBrtHwG4Z", // Replace with your Razorpay key
+          amount: totalPrice * 100, // Amount in paise (multiply by 100)
+          currency: "INR",
+          name: contactDetails.name,
+          description: "Order Payment",
+          handler: function (response) {
+            // On payment success, send order details via email
+            fetch("/api/send-email", {
+              // Calls the Vercel serverless function
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                paymentId: response.razorpay_payment_id,
+                contactDetails: contactDetails,
+                totalPrice: totalPrice,
+              }),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("Order email sent:", data);
+
+                // Clear localStorage and redirect to home page
+                localStorage.removeItem("contactDetails");
+                localStorage.removeItem("totalPrice");
+                window.location.href = "index.html";
+              })
+              .catch((error) =>
+                console.error("Error sending order email:", error)
+              );
+          },
+          prefill: {
+            name: contactDetails.name,
+            email: contactDetails.email,
+          },
+        };
+
+        var rzp = new Razorpay(options);
+        rzp.open();
+      }
+    </script>
+  </body>
+</html>

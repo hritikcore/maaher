@@ -3,82 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form Submission with Payment</title>
+    <title>Contact Form</title>
   </head>
   <body>
-    <form id="userForm">
-      <input type="text" id="name" placeholder="Name" required />
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="text" id="address" placeholder="Address" required />
-      <input type="text" id="pincode" placeholder="Pincode" required />
-      <input type="text" id="contact" placeholder="Contact" required />
-      <input type="hidden" id="totalAmount" value="50000" />
-      <!-- Example Total Cart Value in Paise -->
-      <button type="submit">Submit & Pay</button>
+    <h1>Enter Your Details</h1>
+    <form id="contact-form" onsubmit="handleSubmit(event)">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required /><br />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required /><br />
+
+      <label for="address">Shipping Address</label>
+      <textarea id="address" name="address" required></textarea><br />
+
+      <button type="submit">Submit and Pay</button>
     </form>
 
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
     <script>
-      document
-        .getElementById("userForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
+      function handleSubmit(e) {
+        e.preventDefault();
 
-          // Step 1: Collect form data
-          const formData = {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            address: document.getElementById("address").value,
-            pincode: document.getElementById("pincode").value,
-            contact: document.getElementById("contact").value,
-            totalAmount: document.getElementById("totalAmount").value,
-          };
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const address = document.getElementById("address").value;
 
-          // Step 2: Trigger Razorpay payment
-          const options = {
-            key: "rzp_test_nqtmUnMF9r43qM", // Replace with your Razorpay API key
-            amount: formData.totalAmount, // Amount in paise
-            currency: "INR",
-            name: "Maaher Clothing",
-            description: "Purchase",
-            handler: function (response) {
-              // Step 3: After payment success, send form data and payment ID via email using Google Apps Script
-              fetch(
-                "https://script.google.com/macros/s/AKfycbyO4xwmhWM5qjH3a7a6vl0AMehdJC0hks5vG3uqwnTNZh6LcATRrRCWgXkFpQ0-a4JY/exec",
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    ...formData,
-                    paymentId: response.razorpay_payment_id, // Razorpay Payment ID from success callback
-                  }),
-                }
-              )
-                .then((response) => response.json())
-                .then((data) => {
-                  console.log("Success:", data);
-                  window.location.href = "index.html"; // Redirect after successful payment and email
-                })
-                .catch((error) => {
-                  console.error("Error:", error);
-                });
-            },
-            prefill: {
-              name: formData.name,
-              email: formData.email,
-              contact: formData.contact,
-            },
-            theme: {
-              color: "#3399cc",
-            },
-          };
+        // Store in localStorage
+        localStorage.setItem(
+          "contactDetails",
+          JSON.stringify({ name, email, address })
+        );
 
-          const rzp1 = new Razorpay(options);
-          rzp1.open();
-        });
+        // Redirect to payment page
+        window.location.href = "payment.html";
+      }
     </script>
   </body>
 </html>
