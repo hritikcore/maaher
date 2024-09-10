@@ -411,12 +411,17 @@
     window.onresize = checkForMobile;
   </script>
   <script>
-    // Initialize cart from localStorage
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    updateCartCounter();
+    // Initialize cart from localStorage or empty array
+    window.onload = function () {
+      if (!localStorage.getItem("cart")) {
+        localStorage.setItem("cart", JSON.stringify([]));
+      }
+      updateCartCounter();
+    };
 
-    // Add to Cart function (can be reused across pages)
+    // Add to Cart function (reused across pages)
     function addToCart(name, price, image) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
       const existingItem = cart.find((item) => item.name === name);
       if (existingItem) {
         existingItem.quantity += 1;
@@ -428,8 +433,26 @@
       alert("Added to bag!");
     }
 
+    // Checkout function
+    function checkout() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      if (cart.length === 0) {
+        alert("Your cart is empty. Please add items to proceed.");
+      } else {
+        // Store the total price in localStorage for later use
+        const totalPrice = cart.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        );
+        localStorage.setItem("totalPrice", totalPrice);
+        // Redirect to form.html for contact details
+        window.location.href = "form.html";
+      }
+    }
+
     // Update Cart Counter
     function updateCartCounter() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
       const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
       document.getElementById("cart-counter").textContent = totalItems;
     }
@@ -443,6 +466,7 @@
 
     // Render Cart Items in Cart Drawer
     function renderCartItems() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
       const cartItemsContainer = document.getElementById(
         "cart-items-container"
       );
@@ -466,7 +490,6 @@
         cartItemsContainer.appendChild(cartItem);
       });
 
-      // Update total price
       const totalPrice = cart.reduce(
         (total, item) => total + item.price * item.quantity,
         0
@@ -478,6 +501,7 @@
 
     // Update Quantity in Cart
     function updateQuantity(name, change) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
       const item = cart.find((item) => item.name === name);
       if (item) {
         item.quantity += change;
@@ -488,12 +512,6 @@
         renderCartItems();
         updateCartCounter();
       }
-    }
-
-    // Checkout function (for further integration)
-    function checkout() {
-      alert("Proceed to checkout");
-      // Add Razorpay integration here
     }
   </script>
 </html>
