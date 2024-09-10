@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       },
     });
 
-    // Define the email options
+    // details required
     let mailOptions = {
       from: "hritiksth764@gmail.com",
       to: "hritik.s@coreexperience.com", // Shop owner's email
