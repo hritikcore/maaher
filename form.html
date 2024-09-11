@@ -6,6 +6,41 @@
     <title>Checkout Form - Maaher</title>
     <style>
       /* Add basic styling for the form and cart display */
+      @font-face {
+        font-family: "Lora";
+        src: url("fonts/lora-regular-webfont.woff") format("woff");
+        font-weight: 400, 600;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Lora1";
+        src: url("fonts/lora-bold-webfont.woff") format("woff");
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Lora2";
+        src: url("fonts/lora-italic-webfont.woff") format("woff");
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      @font-face {
+        font-family: "Lora3";
+        src: url("fonts/lora-bolditalic-webfont.woff") format("woff");
+        font-weight: 700;
+        font-style: italic;
+      }
+
+      @font-face {
+        font-family: "Rubik";
+        src: url("fonts/Rubik-Regular.woff");
+        font-weight: 400;
+        font-style: normal;
+        font-weight: 400;
+      }
       .container {
         display: flex;
         justify-content: space-between;
@@ -17,17 +52,34 @@
       .cart-section {
         width: 45%;
         padding: 20px;
-        background-color: #f9f9f9;
+
         border-radius: 10px;
+      }
+
+      .cart-section {
+        background: #fbf9f2;
       }
 
       .form-section h2,
       .cart-section h2 {
         text-align: center;
+        color: #000;
+
+        font-family: Rubik;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
       }
 
       .cart-items-container {
         margin-top: 20px;
+        width: 591px;
+        padding: 44px 42px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 80px;
+        background: #fbf9f2;
       }
 
       .cart-item {
@@ -49,26 +101,40 @@
       .cart-total {
         font-weight: bold;
         text-align: right;
-        margin-top: 20px;
+        margin-top: 10px;
+        color: #000;
+
+        font-family: Lora;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
       }
 
       label {
         display: block;
         margin-bottom: 8px;
         font-weight: bold;
+        color: #232323;
+        font-family: Rubik;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px; /* 200% */
       }
 
       input,
       textarea {
-        width: 100%;
+        width: 560px;
         padding: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
       }
 
       button {
-        width: 100%;
+        margin-top: 10px;
+        width: 410px;
         padding: 15px;
         background-color: #795548;
         color: white;

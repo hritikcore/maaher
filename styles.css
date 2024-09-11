@@ -286,9 +286,10 @@ a:hover {
 
 /* Instagram Section */
 .instagram-section {
+  margin-bottom: 200px;
   padding: 40px 20px;
   text-align: center;
-  background-color: #f9f9f9; /* Optional background color */
+  /* Optional background color */
 }
 
 .instagram-section h2 {
@@ -311,6 +312,11 @@ a:hover {
 }
 
 .image-section img {
+  width: 100%;
+  height: 700px;
+  display: block;
+}
+.image-section1 img {
   width: 100%;
   height: auto;
   display: block;
