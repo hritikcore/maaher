@@ -3,40 +3,194 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Form</title>
+    <title>Checkout Form - Maaher</title>
+    <style>
+      /* Add basic styling for the form and cart display */
+      .container {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
+        font-family: Arial, sans-serif;
+      }
+
+      .form-section,
+      .cart-section {
+        width: 45%;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+      }
+
+      .form-section h2,
+      .cart-section h2 {
+        text-align: center;
+      }
+
+      .cart-items-container {
+        margin-top: 20px;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .cart-item img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .cart-item-details {
+        flex: 1;
+        margin-left: 10px;
+      }
+
+      .cart-total {
+        font-weight: bold;
+        text-align: right;
+        margin-top: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      button {
+        width: 100%;
+        padding: 15px;
+        background-color: #795548;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Enter Your Details</h1>
-    <form id="contact-form" onsubmit="handleSubmit(event)">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required /><br />
+    <div class="container">
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2>Enter Your Details</h2>
+        <form id="contact-form" onsubmit="handleSubmit(event)">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required /><br />
+          <label for="phone">Phone number</label>
+          <input type="text" id="phone" name="phone" required />
 
-      <label for="address">Shipping Address</label>
-      <textarea id="address" name="address" required></textarea><br />
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" name="first-name" required />
 
-      <button type="submit">Submit and Pay</button>
-    </form>
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" name="last-name" required />
+
+          <label for="address1">Address Line 1</label>
+          <input type="text" id="address1" name="address1" required />
+
+          <label for="address2">Address Line 2 (optional)</label>
+          <input type="text" id="address2" name="address2" />
+
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" required />
+
+          <label for="state">State</label>
+          <input type="text" id="state" name="state" required />
+
+          <label for="pincode">PIN code</label>
+          <input type="text" id="pincode" name="pincode" required />
+
+          <button type="submit">Checkout</button>
+        </form>
+      </div>
+
+      <!-- Cart Section -->
+      <div class="cart-section">
+        <h2>Your Cart</h2>
+        <div id="cart-items-container" class="cart-items-container"></div>
+        <div id="cart-total" class="cart-total">Total: Rs. 0</div>
+      </div>
+    </div>
 
     <script>
-      function handleSubmit(e) {
-        e.preventDefault();
+      // Function to load the cart details from localStorage
+      function loadCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItemsContainer = document.getElementById(
+          "cart-items-container"
+        );
+        const cartTotal = document.getElementById("cart-total");
 
-        const name = document.getElementById("name").value;
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+
+          const cartItem = document.createElement("div");
+          cartItem.classList.add("cart-item");
+          cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <p>Price: Rs. ${item.price} x ${item.quantity}</p>
+            </div>
+          `;
+          cartItemsContainer.appendChild(cartItem);
+        });
+
+        cartTotal.textContent = `Total: Rs. ${total}`;
+      }
+
+      // Handle form submission
+      function handleSubmit(event) {
+        event.preventDefault();
+
         const email = document.getElementById("email").value;
-        const address = document.getElementById("address").value;
+        const phone = document.getElementById("phone").value;
+        const firstName = document.getElementById("first-name").value;
+        const lastName = document.getElementById("last-name").value;
+        const address1 = document.getElementById("address1").value;
+        const address2 = document.getElementById("address2").value;
+        const city = document.getElementById("city").value;
+        const state = document.getElementById("state").value;
+        const pincode = document.getElementById("pincode").value;
 
-        // Store in localStorage
+        // Store contact details in localStorage
         localStorage.setItem(
           "contactDetails",
-          JSON.stringify({ name, email, address })
+          JSON.stringify({
+            email,
+            phone,
+            firstName,
+            lastName,
+            address1,
+            address2,
+            city,
+            state,
+            pincode,
+          })
         );
 
-        // Redirect to payment page
+        // Redirect to Razorpay payment page
         window.location.href = "payment.html";
       }
+
+      // Load cart on page load
+      document.addEventListener("DOMContentLoaded", loadCart);
     </script>
   </body>
 </html>
