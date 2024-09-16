@@ -1,36 +1,3 @@
-// Function to check if the user is on a mobile device and display a "Coming Soon" message
-// function checkForMobile() {
-//   const isMobile = window.innerWidth <= 768;
-//   const comingSoonMessage = document.getElementById("mobile-coming-soon");
-
-//   if (isMobile) {
-//     comingSoonMessage.style.display = "flex";
-//     comingSoonMessage.style.position = "fixed";
-//     comingSoonMessage.style.top = "0";
-//     comingSoonMessage.style.left = "0";
-//     comingSoonMessage.style.width = "100%";
-//     comingSoonMessage.style.height = "100%";
-//     comingSoonMessage.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-//     comingSoonMessage.style.color = "white";
-//     comingSoonMessage.style.justifyContent = "center";
-//     comingSoonMessage.style.alignItems = "center";
-//     comingSoonMessage.style.zIndex = "9999";
-//     comingSoonMessage.style.fontSize = "1.5rem";
-//     comingSoonMessage.style.textAlign = "center";
-//     comingSoonMessage.style.padding = "20px";
-//     comingSoonMessage.style.boxSizing = "border-box";
-
-//     // Hide the rest of the content
-//     document.querySelector("main").style.display = "none";
-//     document.querySelector(".content").style.display = "none";
-//     document.querySelector(".second-section").style.display = "none";
-//     document.querySelector(".products-section").style.display = "none";
-//     document.querySelector(".instagram-section").style.display = "none";
-//     document.querySelector(".image-section").style.display = "none";
-//     document.querySelector(".site-footer").style.display = "none";
-//   }
-// }
-
 // Function to detect if the user is on mobile and redirect to the mobile site
 function redirectToMobile() {
   const isMobile = window.innerWidth <= 768; // Define mobile width threshold
@@ -57,7 +24,7 @@ window.onload = function () {
 // Optionally, check again when the window is resized
 window.onresize = redirectToMobile;
 
-// Function to initialize the cart from localStorage or create an empty one
+// Initialize the cart from localStorage or create an empty one
 function initializeCart() {
   if (!localStorage.getItem("cart")) {
     localStorage.setItem("cart", JSON.stringify([]));
@@ -158,14 +125,19 @@ function updateQuantity(name, change) {
   }
 }
 
-// Clear cart on payment success and redirection to index.html
+// Clear cart and reset cart counter on payment success and redirection to index.html
 function clearCartOnPaymentSuccess() {
+  // Clear cart and total price from localStorage
   localStorage.removeItem("cart");
   localStorage.removeItem("totalPrice");
+
+  // Reset cart counter to 0
+  document.getElementById("cart-counter").textContent = 0;
 }
 
-// Automatically clear cart when the user lands on the index.html page after payment success
+// Automatically clear cart and update the cart counter when the user lands on the index.html page after payment success
 window.onload = function () {
+  redirectToMobile();
   initializeCart();
   clearCartOnPaymentSuccess();
 };
