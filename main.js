@@ -3,16 +3,19 @@ function redirectToMobile() {
   const isMobile = window.innerWidth <= 768; // Define mobile width threshold
   const currentUrl = window.location.href;
 
-  // Check if the current URL is the desktop site and user is on a mobile device
-  if (isMobile && currentUrl.includes("maaher.vercel.app")) {
-    window.location.href = "https://maahermobile.vercel.app";
+  // Check if the current URL is the desktop site on custom domain and user is on a mobile device
+  if (isMobile && currentUrl.includes("maaher.life")) {
+    window.location.href = "https://mobilemaher.vercel.app";
   }
 
   // Optional: Redirect back to desktop if user resizes window to desktop size
-  if (!isMobile && currentUrl.includes("maahermobile.vercel.app")) {
-    window.location.href = "https://maaher.vercel.app";
+  if (!isMobile && currentUrl.includes("maaher.life")) {
+    window.location.href = "https://maher.vercel.app";
   }
 }
+
+// Call the function on page load
+window.onload = redirectToMobile;
 
 // Call redirectToMobile function on page load
 window.onload = function () {
