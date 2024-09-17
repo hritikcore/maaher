@@ -8,7 +8,6 @@
 body {
   font-family: "Arial", sans-serif;
   background: #f9f7ec;
-  overflow-x: hidden;
 }
 
 /* Header Section */
@@ -53,10 +52,7 @@ body {
 .product-page {
   display: flex;
   margin: 0 80px;
-  padding: 40px 0px;
-  gap: 48px;
-  height: 100vh;
-  width: auto;
+  padding: 60px;
 }
 
 /* Left Column (Thumbnails) */
@@ -72,8 +68,8 @@ body {
 }
 
 .product-thumbnail img {
-  width: 137px;
-  height: 159px;
+  width: 118px;
+  height: auto;
   cursor: pointer;
   border-radius: 0px;
 }
@@ -81,6 +77,8 @@ body {
 /* Center Column (Main Image) */
 .center-column {
   width: auto;
+
+  padding: 0 60px;
 }
 
 .main-product-image img {
@@ -92,11 +90,9 @@ body {
 /* Right Column (Details) */
 .right-column {
   width: auto;
-  padding-left: 0px;
 }
 
 .product-title {
-  width: auto;
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -109,7 +105,6 @@ body {
 }
 
 .product-description {
-  width: auto;
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
