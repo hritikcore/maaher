@@ -8,6 +8,7 @@
 body {
   font-family: "Arial", sans-serif;
   background: #f9f7ec;
+  overflow-x: hidden;
 }
 
 /* Header Section */
@@ -51,8 +52,11 @@ body {
 
 .product-page {
   display: flex;
-  margin: 0 auto;
-  padding: 60px;
+  margin: 0 80px;
+  padding: 40px 0px;
+  gap: 48px;
+  height: 100vh;
+  width: auto;
 }
 
 /* Left Column (Thumbnails) */
@@ -77,9 +81,6 @@ body {
 /* Center Column (Main Image) */
 .center-column {
   width: auto;
-
-  padding: 0 60px;
-  padding-right: 100px !important;
 }
 
 .main-product-image img {
@@ -95,6 +96,7 @@ body {
 }
 
 .product-title {
+  width: auto;
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -107,6 +109,7 @@ body {
 }
 
 .product-description {
+  width: auto;
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
