@@ -53,7 +53,7 @@ body {
   display: flex;
   margin: 0 80px;
   padding: 60px;
-  height: 100vh;
+  height: 100%;
 }
 
 /* Left Column (Thumbnails) */
@@ -111,38 +111,52 @@ body {
   margin-bottom: 20px;
 }
 
+.accordion-section {
+  margin-top: 20px;
+}
+
+/* Accordion style */
 .accordion {
-  margin-bottom: 20px;
-}
-
-.accordion-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
   margin-bottom: 10px;
+  height: auto;
 }
 
-.accordion-button {
-  background-color: #f5f5f5;
-  border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  border: 1px solid #ccc;
-}
-
-.accordion-content {
+/* Accordion header */
+.accordion-header {
   padding: 15px;
-  display: none;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.accordion-content p {
-  margin: 0;
+/* Accordion content */
+.accordion-content {
+  max-height: 0; /* Initial state to hide content */
+  overflow: hidden; /* Ensure content is hidden initially */
+  padding: 0; /* Remove padding initially */
+  transition: max-height 0.4s ease, padding 0.3s ease; /* Smooth transition for height and padding */
 }
 
-.accordion-button:focus {
-  outline: none;
+/* When accordion is open */
+.accordion-open {
+  padding: 15px;
+  max-height: 800px !important; /* Large enough for most content */
+}
+
+/* Accordion icon rotation for smooth transition */
+.accordion-icon {
+  transition: transform 0.3s ease;
+  font-size: 18px;
+  color: #888;
+}
+
+/* Rotate icon when accordion is open */
+.accordion-open .accordion-icon {
+  transform: rotate(45deg);
 }
 
 .action-buttons {
@@ -292,33 +306,3 @@ body {
 }
 
 /* Media Queries for Responsiveness */
-@media (max-width: 1024px) {
-  .product-page {
-    flex-direction: column;
-  }
-
-  .left-column,
-  .center-column,
-  .right-column {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .product-title {
-    font-size: 24px;
-  }
-
-  .product-price {
-    font-size: 20px;
-  }
-
-  .accordion-button {
-    font-size: 14px;
-  }
-
-  .add-to-bag,
-  .buy-now {
-    font-size: 14px;
-  }
-}
