@@ -66,7 +66,7 @@ html {
 
 .background-container {
   position: relative;
-  background-image: url("image.png");
+  background-image: url("backgroundImage.png");
   background-size: cover;
   background-position: center;
   height: 100vh; /* Full viewport height */
@@ -134,7 +134,6 @@ html {
   /* font-family: lora; */
   font-family: Rubik;
   font-size: 18px;
-
   margin: 0 auto;
   font-size: 16px;
   font-style: normal;
@@ -338,43 +337,81 @@ a:hover {
   display: block;
 }
 
+/* .site-footer {
+  background-color: #f8f8e3; /* Light beige background color 
+  color: #333; /* Text color 
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 72px;
+  padding-bottom: 72px;
+} */
+
 .site-footer {
-  background-color: #f8f8e3; /* Light beige background color */
-  color: #333; /* Text color */
-  padding: 40px 20px;
+  background-color: #f9f5ed; /* Background color */
+  padding: 72px 80px; /* Top/bottom padding 72px, left/right padding 80px */
+
+  justify-content: center;
+  align-items: center;
 }
 
-.footer-content {
+/* .footer-content {
   max-width: 1200px;
-  margin: 0 auto;
+  /* padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 72px;
+  padding-bottom: 72px; 
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+} */
+
+.footer-content {
+  /* Adjust width based on the content size */
+  display: flex;
+  justify-content: space-between;
+  /* gap: 72px; Horizontal gap between left and right content */
 }
 
-.left-content {
-  margin-top: 60px;
-  flex: 1;
-  margin-right: 20px;
+.left-content p {
+  width: 465px;
+  color: #5e5e5e;
+  font-family: Rubik;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 175% */
 }
 
 .right-content {
-  margin-top: 120px;
-  flex: 1;
-  display: flex;
+  margin-top: 10px;
+
+  /* margin-top: 120px; */
+
+  /* display: flex; */
   justify-content: space-between;
 }
 
-.site-footer h2 {
-  font-size: 1.8em;
-  margin-bottom: 20px;
+.explore h3 {
+  width: auto;
+  font-size: 16px;
 }
 
-.site-footer p {
+.newsletter h3 {
+  margin-left: 20px;
+  margin-bottom: 8px;
+  width: auto;
+  font-size: 16px;
+}
+/* .site-footer h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+} */
+
+/* .site-footer p {
   width: 450px;
   font-size: 1em;
   margin-bottom: 30px;
-}
+} */
 
 .footer-links {
   display: flex;
@@ -382,31 +419,23 @@ a:hover {
   width: 100%;
 }
 
-.footer-links .explore,
-.footer-links .newsletter {
-  width: 48%;
-}
-
-.footer-links h3 {
-  font-size: 1.2em;
-  margin-bottom: 15px;
-}
-
 .footer-links ul {
   list-style: none;
   padding: 0;
 }
-
-.footer-links ul li {
-  margin-bottom: 10px;
-}
-
 .footer-links ul li a {
+  margin-bottom: 8px !important;
+  color: #1e1e1e !important;
+  font-family: Rubik;
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 175% */
   text-decoration: none;
-  color: #333;
 }
 
 .footer-links .newsletter form {
+  margin-left: 20px;
   display: flex;
   gap: 10px;
 }
