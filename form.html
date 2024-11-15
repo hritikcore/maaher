@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -147,7 +147,7 @@
   </head>
   <body>
     <div class="container">
-      <!-- Form Section -->
+      Form Section 
       <div class="form-section">
         <h2>Enter Your Details</h2>
         <form id="contact-form" onsubmit="handleSubmit(event)">
@@ -182,7 +182,7 @@
         </form>
       </div>
 
-      <!-- Cart Section -->
+     Cart Section
       <div class="cart-section">
         <h2>Your Cart</h2>
         <div id="cart-items-container" class="cart-items-container"></div>
@@ -253,6 +253,310 @@
 
         // Redirect to Razorpay payment page
         window.location.href = "payment.html";
+      }
+
+      // Load cart on page load
+      document.addEventListener("DOMContentLoaded", loadCart);
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout Form - Maaher</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+      /* Add your CSS styles here */
+      /* Add basic styling for the form and cart display */
+      @font-face {
+        font-family: "Lora";
+        src: url("fonts/lora-regular-webfont.woff") format("woff");
+        font-weight: 400, 600;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Lora1";
+        src: url("fonts/lora-bold-webfont.woff") format("woff");
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Lora2";
+        src: url("fonts/lora-italic-webfont.woff") format("woff");
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      @font-face {
+        font-family: "Lora3";
+        src: url("fonts/lora-bolditalic-webfont.woff") format("woff");
+        font-weight: 700;
+        font-style: italic;
+      }
+
+      @font-face {
+        font-family: "Rubik";
+        src: url("fonts/Rubik-Regular.woff");
+        font-weight: 400;
+        font-style: normal;
+        font-weight: 400;
+      }
+      .container {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px;
+        font-family: Arial, sans-serif;
+      }
+
+      .form-section,
+      .cart-section {
+        width: 45%;
+        padding: 20px;
+
+        border-radius: 10px;
+      }
+
+      .cart-section {
+        background: #fbf9f2;
+      }
+
+      .form-section h2,
+      .cart-section h2 {
+        text-align: center;
+        color: #000;
+
+        font-family: Rubik;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+
+      .cart-items-container {
+        margin-top: 20px;
+        width: 591px;
+        padding: 44px 42px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 80px;
+        background: #fbf9f2;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .cart-item img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .cart-item-details {
+        flex: 1;
+        margin-left: 10px;
+      }
+
+      .cart-total {
+        font-weight: bold;
+        text-align: right;
+        margin-top: 10px;
+        color: #000;
+
+        font-family: Lora;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #232323;
+        font-family: Rubik;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px; /* 200% */
+      }
+
+      input,
+      textarea {
+        width: 560px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      button {
+        margin-top: 10px;
+        width: 410px;
+        padding: 15px;
+        background-color: #795548;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2>Enter Your Details</h2>
+        <form id="contact-form" onsubmit="handleFormSubmit(event)">
+          <!-- Form fields -->
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="phone">Phone number</label>
+          <input type="text" id="phone" name="phone" required />
+
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" name="first-name" required />
+
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" name="last-name" required />
+
+          <label for="address1">Address Line 1</label>
+          <input type="text" id="address1" name="address1" required />
+
+          <label for="address2">Address Line 2 (optional)</label>
+          <input type="text" id="address2" name="address2" />
+
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" required />
+
+          <label for="state">State</label>
+          <input type="text" id="state" name="state" required />
+
+          <label for="pincode">PIN code</label>
+          <input type="text" id="pincode" name="pincode" required />
+
+          <button type="submit">Checkout</button>
+        </form>
+      </div>
+
+      <!-- Cart Section -->
+      <div class="cart-section">
+        <h2>Your Cart</h2>
+        <div id="cart-items-container" class="cart-items-container"></div>
+        <div id="cart-total" class="cart-total">Total: Rs. 0</div>
+      </div>
+    </div>
+
+    <script>
+      // Load cart details from localStorage
+      function loadCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItemsContainer = document.getElementById(
+          "cart-items-container"
+        );
+        const cartTotal = document.getElementById("cart-total");
+
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+
+          const cartItem = document.createElement("div");
+          cartItem.classList.add("cart-item");
+          cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-item-details">
+            <h4>${item.name}</h4>
+            <p>Price: Rs. ${item.price} x ${item.quantity}</p>
+          </div>
+        `;
+          cartItemsContainer.appendChild(cartItem);
+        });
+
+        cartTotal.textContent = `Total: Rs. ${total}`;
+        localStorage.setItem("totalPrice", total); // Store total price in localStorage for Razorpay
+      }
+
+      // Handle form submission and trigger Razorpay
+      function handleFormSubmit(event) {
+        event.preventDefault();
+
+        // Store contact details in localStorage
+        const contactDetails = {
+          email: document.getElementById("email").value,
+          phone: document.getElementById("phone").value,
+          firstName: document.getElementById("first-name").value,
+          lastName: document.getElementById("last-name").value,
+          address1: document.getElementById("address1").value,
+          address2: document.getElementById("address2").value,
+          city: document.getElementById("city").value,
+          state: document.getElementById("state").value,
+          pincode: document.getElementById("pincode").value,
+        };
+        localStorage.setItem("contactDetails", JSON.stringify(contactDetails));
+
+        // Trigger payment
+        payNow();
+      }
+
+      function payNow() {
+        // Retrieve contact details and total price
+        const contactDetails = JSON.parse(
+          localStorage.getItem("contactDetails")
+        );
+        const totalPrice = localStorage.getItem("totalPrice");
+
+        // Configure Razorpay payment
+        const options = {
+          key: "rzp_test_tXnxpLBrtHwG4Z", // Replace with your Razorpay key
+          amount: totalPrice * 100, // Amount in paise
+          currency: "INR",
+          name: `${contactDetails.firstName} ${contactDetails.lastName}`,
+          description: "Order Payment",
+          handler: function (response) {
+            // On successful payment, send order details via email
+            fetch("/api/send-email", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                paymentId: response.razorpay_payment_id,
+                contactDetails: contactDetails,
+                totalPrice: totalPrice,
+              }),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("Order email sent:", data);
+
+                // Clear localStorage and redirect to homepage
+                localStorage.removeItem("contactDetails");
+                localStorage.removeItem("totalPrice");
+                localStorage.removeItem("cart"); // Clear cart
+                window.location.href = "index.html";
+              })
+              .catch((error) =>
+                console.error("Error sending order email:", error)
+              );
+          },
+          prefill: {
+            name: `${contactDetails.firstName} ${contactDetails.lastName}`,
+            email: contactDetails.email,
+          },
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
       }
 
       // Load cart on page load
