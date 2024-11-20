@@ -10,6 +10,42 @@ body {
   background: #f9f7ec;
 }
 
+@font-face {
+  font-family: "Lora";
+  src: url("fonts/lora-regular-webfont.woff") format("woff");
+  font-weight: 400, 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lora1";
+  src: url("fonts/lora-bold-webfont.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lora2";
+  src: url("fonts/lora-italic-webfont.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lora3";
+  src: url("fonts/lora-bolditalic-webfont.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("fonts/Rubik-Regular.woff");
+  font-weight: 400;
+  font-style: normal;
+  font-weight: 400;
+}
+
 /* Header Section */
 .header {
   display: flex;
@@ -94,17 +130,38 @@ body {
 }
 
 .product-title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  /* font-size: 28px;
+  font-weight: bold;*/
+  margin-bottom: 16px;
+  color: #000;
+  font-family: Lora;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .product-price {
   font-size: 24px;
   color: #555;
-  margin-bottom: 20px;
+
+  color: #000;
+  font-family: Lora;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
+.Tax {
+  color: #7b7b7b;
+  font-family: Lora;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px;
+}
 .product-description {
   font-size: 16px;
   line-height: 1.5;
@@ -117,8 +174,7 @@ body {
 
 /* Accordion style */
 .accordion {
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 4px !important;
   margin-bottom: 10px;
   height: auto;
 }
@@ -126,11 +182,17 @@ body {
 /* Accordion header */
 .accordion-header {
   padding: 15px;
-  background-color: #f7f7f7;
+  color: #f4f1df;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #351d0d;
+  font-family: Rubik;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 /* Accordion content */
@@ -141,6 +203,15 @@ body {
   transition: max-height 0.4s ease, padding 0.3s ease; /* Smooth transition for height and padding */
 }
 
+.accordion-content p {
+  color: #0f0f0f;
+  font-family: Rubik;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 175% */
+  text-transform: capitalize;
+}
 /* When accordion is open */
 .accordion-open {
   padding: 15px;
@@ -170,12 +241,17 @@ body {
   font-size: 16px;
   cursor: pointer;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  background: #351d0d;
 }
 
 .add-to-bag {
-  background-color: #f5f5f5;
-  color: #333;
+  color: #f4f1df;
+  font-family: Lora;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .buy-now {
