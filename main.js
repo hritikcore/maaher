@@ -160,20 +160,20 @@ window.onload = function () {
 };
 
 // Function to detect if the user is on mobile and redirect to the mobile site
-function redirectToMobile() {
-  const isMobile = window.innerWidth <= 768; // Define mobile width threshold
-  const currentUrl = window.location.href;
+// function redirectToMobile() {
+//   const isMobile = window.innerWidth <= 768; // Define mobile width threshold
+//   const currentUrl = window.location.href;
 
-  // Check if the current URL is the desktop site on custom domain and user is on a mobile device
-  if (isMobile && currentUrl.includes("maaher.life")) {
-    window.location.href = "https://maahermobile.vercel.app";
-  }
+//   // Check if the current URL is the desktop site on custom domain and user is on a mobile device
+//   if (isMobile && currentUrl.includes("maaher.life")) {
+//     window.location.href = "https://maahermobile.vercel.app";
+//   }
 
-  // Optional: Redirect back to desktop if user resizes window to desktop size
-  if (!isMobile && currentUrl.includes("maaher.life")) {
-    window.location.href = "https://maaher.vercel.app";
-  }
-}
+//   // Optional: Redirect back to desktop if user resizes window to desktop size
+//   if (!isMobile && currentUrl.includes("maaher.life")) {
+//     window.location.href = "https://maaher.vercel.app";
+//   }
+// }
 
 // Initialize the cart from localStorage or create an empty one
 function initializeCart() {
