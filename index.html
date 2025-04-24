@@ -7,6 +7,37 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <style>
+      body > * {
+        display: none !important;
+      }
+
+      .maintenance-message {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+        font-family: sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .maintenance-message p {
+        margin: 10px 0;
+        line-height: 1.5;
+      }
+    </style>
+
+    <div class="maintenance-message">
+      <p>We’re currently undergoing scheduled maintenance.</p>
+      <p>Please check back soon.</p>
+      <p>Meanwhile, the site is live on mobile.</p>
+    </div>
     <!-- <div id="comingSoonOverlay">Coming Soon</div> -->
     <!-- Background Image Section -->
     <main class="background-container">
